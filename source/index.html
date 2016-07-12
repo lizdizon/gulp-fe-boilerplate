@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Site Title</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<!-- OG tags can go here -->
+	<link rel="stylesheet" href="css/main.css"/>
+</head>
+<body id="page-content">
+	<script id="page-template" type="text/x-handlebars-template">
+	<nav id="main-nav" class="main-nav">
+		<h1 class="site-name">{{siteName}}</h1>
+		<div id="main-nav-mobile" class="main-nav-mobile"></div>
+		{{#mainNav}}
+		<ul class="main-nav-list">
+			{{#each navList}}
+			<li class="nav-item {{slug}}"><a class="nav-item-link" href="{{link}}"><h2 class="nav-item-copy">{{copy}}</h2></a></li>
+			{{/each}}
+		</ul>
+		<a class="mobile-search-container search-link nav-item-link" href="{{search.link}}"><p class="search-copy">{{search.copy}}</p></a>
+		{{/mainNav}}
+	</nav>
+	<div class="wrap">
+		<!-- content goes here -->
+	</div> <!-- end .wrap -->
+	<footer class="site-footer">
+		<ul class="site-links">
+			{{#each footer}}
+			<li class="footer-item {{slug}}"><a href="{{link}}">{{{copy}}}</a></li>
+			{{/each}}
+		</ul>
+	</footer>
+	</script><!-- end #page-template -->
+	<script src="./js/main.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+/* Navigation Bar */
+
+.main-nav {
+	width: 100%;
+	padding: 22px;
+	background-color: $nav-color;
+	box-sizing: border-box;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100;
+
+	@include breakpoint(mobile) {
+		height: 45px;
+		padding: 16px 0;
+
+		&.open {
+			.main-nav-list {
+				display: block;
+			}
+		}
+	}
+
+	.main-nav-mobile {
+		display: none;
+
+		@include breakpoint(mobile) {
+			height: 12px;
+			width: 18px;
+			@include bg-img('/images/ui/nav-menu-mobile.png', 18px, 12px);
+			display: block;
+			position: absolute;
+			top: 17px;
+			left: 5%;
+			cursor: pointer;
+		}
+	}
+
+	.main-nav-list {
+		width: 100%;
+		text-align: center;
+		display: inline-block;
+		@include user-select(none);
+
+		@include breakpoint(mobile) {
+			padding: 16px 0;
+			background-color: rgba(49,50,54, 0.8);
+			display: none;
+			position: absolute;
+			top: 80%;
+			left: 0;
+		}
+
+		.nav-item {
+			padding: 0 27px;
+			text-transform: lowercase;		
+			display: inline-block;
+
+			@include hover-underline;
+
+			@include breakpoint(mobile) {
+				padding: 7px 27px;
+				display: block;
+
+				a {
+					width: 90%;
+					display: inline-block;
+				}
+			}
+
+			.search {
+				@include hide-text;
+				vertical-align: text-bottom;
+				cursor: pointer;
+
+				&:after {
+					height: 16px;
+					width: 16px;
+					content: '';
+					@include bg-img('/images/ui/nav-search.png', 16px, 16px);
+					opacity: 1;
+					display: block;
+				}
+
+				@include breakpoint(mobile) {
+					display: none;
+				}	
+			}
+
+			a > .nav-item-copy {
+				@include transition;
+
+				&:hover {
+					color: $blue;
+				}
+			}
+		}
+	}
+
+	.mobile-search-container {
+		display: none;
+
+		@include breakpoint(mobile) {
+			display: block;
+			height: 16px;
+			width: 16px;
+			@include bg-img('/images/ui/nav-search.png', 16px, 16px);
+			display: block;
+			position: absolute;
+			top: 15px;
+			right: 5%;
+
+			.search-copy {
+				@include hide-text;
+				vertical-align: top;
+				line-height: 1;
+			}
+		}
+		
+	}
+}
+
+/* Footer */
+
+.site-footer {
+	width: 100%;
+	padding: 20px;
+	background-color: $background-color;
+	text-align: center;
+	box-sizing: border-box;
+	position: fixed;
+	bottom: 0;
+
+	@include breakpoint(mobile) {
+		padding: 20px 10px;
+		position: absolute;
+		left: 0;
+	}
+
+	.site-links {
+		display: inline-block;
+	}
+
+	.footer-item {
+		font-size: 12px;
+		margin: 0 8px;
+		display: inline-block;
+
+		@include breakpoint(mobile) {
+			margin: 8px;
+			display: block;
+		}
+		
+		a {
+			color: $blue;
+			text-decoration: none;
+			@include transition;
+
+			&:hover {
+				color: $white;
+			}
+		}
+
+		&.legal a {
+			color: $white;
+		}
+	}
+}

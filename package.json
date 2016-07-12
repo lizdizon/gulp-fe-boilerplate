@@ -1,0 +1,35 @@
+{
+  "name": "gulp-fe-boilerplate",
+  "version": "0.0.1",
+  "description": "Boilerplate Node gulp.js project for front end development.",
+  "author": "Liz Dizon",
+  "main": "build/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lizdizon/gulp-fe-boilerplate.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lizdizon/gulp-fe-boilerplate/issues"
+  },
+  "homepage": "https://github.com/lizdizon/gulp-fe-boilerplate#readme",
+  "devDependencies": {
+    "browser-sync": "^2.12.2",
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-jshint": "^2.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.2.0",
+    "gulp-uglify": "^1.5.3",
+    "handlebars": "^4.0.5",
+    "imagemin-pngquant": "^4.2.2",
+    "jshint": "^2.9.1",
+    "run-sequence": "^1.1.5"
+  }
+}

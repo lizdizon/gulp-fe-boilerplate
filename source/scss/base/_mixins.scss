@@ -1,0 +1,115 @@
+/* Breakpoints */
+
+/* Sample breakpoints; Better to set breakpoint values to where the design breaks */
+@mixin breakpoint($breakpoint) {
+	@if $breakpoint == xlarge {
+		@media only screen and (min-width: 1366px) { @content; }
+	}
+	@else if $breakpoint == desktop {
+		@media only screen and (max-width: 1366px) { @content; }
+	}
+	@else if $breakpoint == desktop-s {
+		@media only screen and (max-width: 1180px) { @content; }
+	}
+	@else if $breakpoint == tablet-l {
+		@media only screen and (max-width: 1065px) { @content; }
+	}
+	@else if $breakpoint == tablet-p {
+		@media only screen and (max-width: 880px) { @content; }
+	}
+	@else if $breakpoint == mobile {
+		@media only screen and (max-width: 667px) { @content; }
+	}
+	@else if $breakpoint == mobile-s {
+		@media only screen and (max-width: 560px) { @content; }
+	}
+}
+
+/* Other Mixins */
+
+/* Font Size */
+/* This one is modular scale, golden ratio */
+@mixin font-size($size) {
+	@if $size == largest {
+		font-size: 4.236em;
+	}
+	@else if $size == larger {
+		font-size: 2.618em;
+	}
+	@else if $size == large {
+		font-size: 1.618em;
+	}
+	@else if $size == default {
+		font-size: 1em;
+	}
+	@else if $size == smaller {
+		font-size: 0.618em;
+	}
+}
+
+
+/* Background Image Cover */
+@mixin bg-img-cover($imagePath) {
+	background-image: url($imagePath);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	display: block;
+	overflow: hidden;
+}
+
+/* Background Image */
+@mixin bg-img($imagePath, $width, $height) {
+	background: url($imagePath) center center no-repeat;
+	background-size: $width $height;
+}
+
+/* User Select */
+@mixin user-select($val) {
+	-webkit-user-select: $val;  /* Prefixed versions included here as autoprefixer doesn't support them */
+	-moz-user-select: $val;
+	-ms-user-select: $val;
+	user-select: $val; 
+}
+
+/* Hide Text */
+@mixin hide-text() {
+	font-size: 0;
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+/* Transition */
+@mixin transition($property: color, $ease: ease-out, $duration: 300ms) {
+	transition: $property $ease $duration;
+}
+
+/* Hover Underline */
+@mixin hover-underline() {
+
+	&:after {
+		content: '';
+		display: block;
+		opacity: 0;
+		transform: translateZ(0);
+		@include transition($property: opacity);
+	}
+
+	&:hover {
+		&:after {
+			width: 100%;
+			margin-bottom: -2px;
+			border-bottom: 2px solid $keylinegray;
+			content: '';
+			opacity: 1;
+			display: block;
+
+			@include breakpoint(mobile) {
+				margin-bottom: 0;
+				border-bottom: none;
+			}
+		}
+	}
+		
+}

@@ -1,0 +1,44 @@
+/* @font-face declarations can go here */
+
+body {
+	font-family: $sans;
+	font-size: 14px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	font-style: normal;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 1;
+	color: $white;
+	user-select: all;
+}
+
+h1 {
+	@include font-size(larger);
+}
+
+h2 {
+	@include font-size(large);
+}
+
+h3 {
+	@include font-size(large);
+}
+
+
+p {
+	font-size: 1.4em;
+	line-height: 1.6;
+}
+
+a {
+	text-decoration: none;
+}
+

@@ -1,0 +1,32 @@
+html {
+	min-height: 100%;
+}
+
+body {
+	min-height: 100%;
+	background-color: $background-color;
+}
+
+.wrap {
+	min-width: $minwidth;
+	max-width: $maxwidth;
+	margin: 0 auto;
+	position: relative;
+}
+
+.site-name {
+	@include font-size(large);
+	display: inline-block;
+/* 	@include hide-text(); */
+	position: absolute;
+
+	@include breakpoint(mobile) {
+		margin: 0 auto;
+		@include font-size(default);
+		text-align: center;
+		position: relative;
+		display: block;
+	}
+}
+
+
