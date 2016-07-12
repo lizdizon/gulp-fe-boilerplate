@@ -20,10 +20,10 @@ $ gulp build
 ### Commands
 `$ gulp watch` - Start local server, preview build at http://localhost:3000
 * starts browserSync and local server
-* watches for changes in /src/* and runs jshint, js cat + uglify, sass + autoprefixer, and copy tasks as needed, outputting into /dist/*
+* watches for changes in /source/* and runs jshint, js cat + uglify, sass + autoprefixer, and copy tasks as needed, outputting into /dist/*
 
 `$ gulp build` - build project from source
-* clean /dist/*, compile and copy all assets and dependencies, optimize images
+* clean /dist/*, copy the following: /source/*.html, /source/images/* optimized with imagemin, /source/fonts/*, dev dependencies into /dist/.
 
 ### Development dependencies
 * gulp.js (http://gulpjs.com/)
