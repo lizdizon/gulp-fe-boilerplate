@@ -14,7 +14,7 @@ var browserSync = require('browser-sync').create();
 paths = {
 	src: {
 		scss: './source/scss/**/*.scss',
-		js: './source/js/*.js',
+		js: './source/js/',
 		images: './source/images/**',
 		fonts: './source/fonts/**',
 		markup: './source/*.html'
@@ -41,7 +41,7 @@ gulp.task('sass', function() {
 });
 
 gulp.task('scripts', function() {
-	return gulp.src(paths.src.js)
+	return gulp.src([paths.src.js + 'vendor/**', paths.src.js + '*.js'])
 		.pipe(concat('all.js'))
 		.pipe(rename('main.min.js'))
 		.pipe(uglify())
@@ -49,7 +49,7 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('lint', function() {
-	return gulp.src([paths.src.js, '!./source/js/handlebars.js'])
+	return gulp.src(paths.src.js + '*.js')
 		.pipe(jshint())
 		.pipe(jshint.reporter('default'));
 });
@@ -85,7 +85,7 @@ gulp.task('copy:json', function() {
 
 gulp.task('copy:hbslib', function() {
 	return gulp.src('./node_modules/handlebars/dist/handlebars.js')
-		.pipe(gulp.dest('./source/js/'));
+		.pipe(gulp.dest('./source/js/vendor/'));
 });
 
 gulp.task('browserSync', function() {
@@ -97,7 +97,8 @@ gulp.task('browserSync', function() {
 });
 
 gulp.task('watch', ['browserSync', 'sass'], function() {
-	gulp.watch(paths.src.js, ['lint', 'scripts']);
+	gulp.watch(paths.src.js + '*.js', ['lint', 'scripts']);
+	gulp.watch('./source/js/*.json', ['copy:json']);
 	gulp.watch(paths.src.scss, ['sass']);
 	gulp.watch(paths.src.markup, ['copy:markup']);
 });
@@ -117,4 +118,4 @@ gulp.task('build', function(callback) {
 	);
 });
 
-gulp.task('default', ['lint', 'sass', 'scripts', 'watch']);
+gulp.task('default', ['sass', 'lint', 'scripts', 'watch']);
