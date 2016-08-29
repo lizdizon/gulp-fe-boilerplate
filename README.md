@@ -5,7 +5,7 @@ Boilerplate Node gulp.js project for front end development.
 
 ### Features
 * BrowserSync live preview
-* SASS post-processing with autoprefixer
+* SASS pre-processing with autoprefixing
 * JS Hinting
 * CSS and JS concatenation and minification
 * Image minification
