@@ -18,12 +18,19 @@ $ gulp build
 ```
 
 ### Commands
+
+#### Main tasks
 `$ gulp watch` - Start local server, preview build at http://localhost:3000
 * starts browserSync and local server
 * watches for changes in /source/* and runs jshint, js cat + uglify, sass + autoprefixer, and copy tasks as needed, outputting into /dist/*
 
 `$ gulp build` - build project from source
 * clean /dist/*, copy the following: /source/*.html, /source/images/* optimized with imagemin, /source/fonts/*, dev dependencies into /dist/.
+
+#### Additional tasks
+`$ gulp help` - List additional dev gulp tasks.
+
+`$ gulp help --all` - List all project tasks
 
 ### Development dependencies
 * gulp.js (http://gulpjs.com/)
@@ -38,3 +45,4 @@ $ gulp build
 * run-sequence (https://www.npmjs.com/package/run-sequence)
 * browserSync (https://www.browsersync.io/) 
 * Handlebars (http://handlebarsjs.com/)
+* gulp-help (https://www.npmjs.com/package/gulp-help)
