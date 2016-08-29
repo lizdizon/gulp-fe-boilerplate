@@ -1,4 +1,4 @@
-var gulp = require('gulp');
+var gulp = require('gulp-help')(require('gulp'));
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var jshint = require('gulp-jshint');
@@ -28,7 +28,7 @@ paths = {
 	}
 }
 
-gulp.task('sass', function() {
+gulp.task('sass', false, function() {
 	return gulp.src(paths.src.scss)
 		.pipe(autoprefixer({
 			browsers: ['last 2 versions']
@@ -40,7 +40,7 @@ gulp.task('sass', function() {
 		}));
 });
 
-gulp.task('scripts', function() {
+gulp.task('scripts', 'js concat, uglify, and copy to dist', function() {
 	return gulp.src([paths.src.js + 'vendor/**', paths.src.js + '*.js'])
 		.pipe(concat('all.js'))
 		.pipe(rename('main.min.js'))
@@ -48,17 +48,17 @@ gulp.task('scripts', function() {
 		.pipe(gulp.dest(paths.dist.js));
 });
 
-gulp.task('lint', function() {
+gulp.task('lint', false, function() {
 	return gulp.src(paths.src.js + '*.js')
 		.pipe(jshint())
 		.pipe(jshint.reporter('default'));
 });
 
-gulp.task('clean:all', function() {
+gulp.task('clean:all', 'clean /dist', function() {
 	return del(paths.dist.root);
 });
 
-gulp.task('copy:images', function() {
+gulp.task('copy:images', 'minimize images from /source/images and copy to /dist/images', function() {
 	return gulp.src(paths.src.images)
 		.pipe(imagemin({
 				progressive: true,
@@ -68,27 +68,27 @@ gulp.task('copy:images', function() {
 		.pipe(gulp.dest(paths.dist.images));
 });
 
-gulp.task('copy:markup', function() {
+gulp.task('copy:markup', 'copy /source/*.html to /dist', function() {
 	return gulp.src(paths.src.markup)
 		.pipe(gulp.dest(paths.dist.root));
 });
 
-gulp.task('copy:fonts', function() {
+gulp.task('copy:fonts', false, function() {
 	return gulp.src(paths.src.fonts)
 		.pipe(gulp.dest(paths.dist.fonts));
 });
 
-gulp.task('copy:json', function() {
+gulp.task('copy:json', 'copy /source/*.json to /dist', function() {
 	return gulp.src('./source/js/index.json')
 		.pipe(gulp.dest(paths.dist.js));
 });
 
-gulp.task('copy:hbslib', function() {
+gulp.task('copy:hbslib', false, function() {
 	return gulp.src('./node_modules/handlebars/dist/handlebars.js')
 		.pipe(gulp.dest('./source/js/vendor/'));
 });
 
-gulp.task('browserSync', function() {
+gulp.task('browserSync', false, function() {
   browserSync.init({
     server: {
       baseDir: paths.dist.root
@@ -96,14 +96,14 @@ gulp.task('browserSync', function() {
   })
 });
 
-gulp.task('watch', ['browserSync', 'sass'], function() {
+gulp.task('watch', 'launch browsersync and watch sass', ['browserSync', 'sass'], function() {
 	gulp.watch(paths.src.js + '*.js', ['lint', 'scripts']);
 	gulp.watch('./source/js/*.json', ['copy:json']);
 	gulp.watch(paths.src.scss, ['sass']);
 	gulp.watch(paths.src.markup, ['copy:markup']);
 });
 
-gulp.task('build', function(callback) {
+gulp.task('build', 'clean /dist, copy assets, and build project', function(callback) {
 	runSequence(
 		'clean:all',
 		'copy:markup',
@@ -118,4 +118,4 @@ gulp.task('build', function(callback) {
 	);
 });
 
-gulp.task('default', ['sass', 'lint', 'scripts', 'watch']);
+gulp.task('default', 'launch project in browser', ['browserSync']);
