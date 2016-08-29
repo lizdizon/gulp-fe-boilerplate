@@ -40,7 +40,7 @@ gulp.task('sass', false, function() {
 		}));
 });
 
-gulp.task('scripts', 'js concat, uglify, and copy to dist', function() {
+gulp.task('scripts', 'JavaScript concat, uglify, and copy to /dist', function() {
 	return gulp.src([paths.src.js + 'vendor/**', paths.src.js + '*.js'])
 		.pipe(concat('all.js'))
 		.pipe(rename('main.min.js'))
@@ -54,11 +54,11 @@ gulp.task('lint', false, function() {
 		.pipe(jshint.reporter('default'));
 });
 
-gulp.task('clean:all', 'clean /dist', function() {
+gulp.task('clean:all', 'Clean /dist', function() {
 	return del(paths.dist.root);
 });
 
-gulp.task('copy:images', 'minimize images from /source/images and copy to /dist/images', function() {
+gulp.task('copy:images', 'Minimize images from /source/images and copy to /dist/images', function() {
 	return gulp.src(paths.src.images)
 		.pipe(imagemin({
 				progressive: true,
@@ -68,7 +68,7 @@ gulp.task('copy:images', 'minimize images from /source/images and copy to /dist/
 		.pipe(gulp.dest(paths.dist.images));
 });
 
-gulp.task('copy:markup', 'copy /source/*.html to /dist', function() {
+gulp.task('copy:markup', 'Copy /source/*.html to /dist', function() {
 	return gulp.src(paths.src.markup)
 		.pipe(gulp.dest(paths.dist.root));
 });
@@ -78,7 +78,7 @@ gulp.task('copy:fonts', false, function() {
 		.pipe(gulp.dest(paths.dist.fonts));
 });
 
-gulp.task('copy:json', 'copy /source/*.json to /dist', function() {
+gulp.task('copy:json', 'Copy /source/*.json to /dist', function() {
 	return gulp.src('./source/js/index.json')
 		.pipe(gulp.dest(paths.dist.js));
 });
@@ -96,14 +96,14 @@ gulp.task('browserSync', false, function() {
   })
 });
 
-gulp.task('watch', 'launch browsersync and watch sass', ['browserSync', 'sass'], function() {
+gulp.task('watch', 'Launch browsersync and watch sass', ['browserSync', 'sass'], function() {
 	gulp.watch(paths.src.js + '*.js', ['lint', 'scripts']);
 	gulp.watch('./source/js/*.json', ['copy:json']);
 	gulp.watch(paths.src.scss, ['sass']);
 	gulp.watch(paths.src.markup, ['copy:markup']);
 });
 
-gulp.task('build', 'clean /dist, copy assets, and build project', function(callback) {
+gulp.task('build', 'Clean /dist, copy assets, and build project', function(callback) {
 	runSequence(
 		'clean:all',
 		'copy:markup',
@@ -118,4 +118,4 @@ gulp.task('build', 'clean /dist, copy assets, and build project', function(callb
 	);
 });
 
-gulp.task('default', 'launch project in browser', ['browserSync']);
+gulp.task('default', 'Launch project in browser', ['browserSync']);
