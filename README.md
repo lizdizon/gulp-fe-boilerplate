@@ -46,3 +46,4 @@ $ gulp build
 * browserSync (https://www.browsersync.io/) 
 * Handlebars (http://handlebarsjs.com/)
 * gulp-help (https://www.npmjs.com/package/gulp-help)
+* pump (https://www.npmjs.com/package/pump)
