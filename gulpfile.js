@@ -10,6 +10,7 @@ var imagemin = require('gulp-imagemin');
 var pngquant = require('imagemin-pngquant');
 var runSequence = require('run-sequence');
 var browserSync = require('browser-sync').create();
+var pump = require('pump');
 
 paths = {
 	src: {
@@ -40,12 +41,16 @@ gulp.task('sass', false, function() {
 		}));
 });
 
-gulp.task('scripts', 'JavaScript concat, uglify, and copy to /dist', function() {
-	return gulp.src([paths.src.js + 'vendor/**', paths.src.js + '*.js'])
-		.pipe(concat('all.js'))
-		.pipe(rename('main.min.js'))
-		.pipe(uglify())
-		.pipe(gulp.dest(paths.dist.js));
+gulp.task('scripts', 'JavaScript concat, uglify, and copy to /dist', function(callback) {
+	pump([
+			gulp.src([paths.src.js + 'vendor/**', paths.src.js + '*.js']),
+			concat('all.js'),
+			rename('main.min.js'),
+			uglify(),
+			gulp.dest(paths.dist.js)
+		],
+		callback
+	);
 });
 
 gulp.task('lint', false, function() {
