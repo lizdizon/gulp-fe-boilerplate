@@ -93,6 +93,12 @@ gulp.task('copy:hbslib', false, function() {
 		.pipe(gulp.dest('./source/js/vendor/'));
 });
 
+gulp.task('copy:normalizeCss', false, function() {
+	return gulp.src('./node_modules/normalize.css/normalize.css')
+		.pipe(rename('_normalize.scss'))
+		.pipe(gulp.dest('./source/scss/base/'));
+});
+
 gulp.task('browserSync', false, function() {
   browserSync.init({
     server: {
@@ -114,6 +120,7 @@ gulp.task('build', 'Clean /dist, copy assets, and build project', function(callb
 		'copy:markup',
 		'copy:images',
 		'copy:fonts',
+		'copy:normalizeCss',
 		'copy:hbslib',
 		'copy:json',
 		'sass',
