@@ -32,18 +32,19 @@ $ gulp build
 
 `$ gulp help --all` - List all project tasks
 
-### Development dependencies
+### Dependencies
 * gulp.js (http://gulpjs.com/)
-* gulp-sass (https://www.npmjs.com/package/gulp-sass)
-* gulp-autoprefixer (https://www.npmjs.com/package/gulp-autoprefixer)
-* gulp-jshint (https://www.npmjs.com/package/gulp-jshint)
-* gulp-concat (https://www.npmjs.com/package/gulp-concat)
-* gulp-uglify (https://www.npmjs.com/package/gulp-uglify)
-* gulp-rename (https://www.npmjs.com/package/gulp-rename)
-* del (https://www.npmjs.com/package/del)
-* gulp-imagemin, imagemin-pngquant (https://www.npmjs.com/package/gulp-imagemin)
-* run-sequence (https://www.npmjs.com/package/run-sequence)
+* gulp-sass (https://github.com/dlmanning/gulp-sass)
+* gulp-autoprefixer (https://github.com/sindresorhus/gulp-autoprefixer)
+* gulp-jshint (https://github.com/spalger/gulp-jshint)
+* gulp-concat (https://github.com/contra/gulp-concat)
+* gulp-uglify (https://github.com/terinjokes/gulp-uglify)
+* gulp-rename (https://github.com/hparra/gulp-rename)
+* del (https://github.com/sindresorhus/del)
+* gulp-imagemin, imagemin-pngquant (https://github.com/sindresorhus/gulp-imagemin)
+* run-sequence (https://github.com/OverZealous/run-sequence)
 * browserSync (https://www.browsersync.io/) 
 * Handlebars (http://handlebarsjs.com/)
-* gulp-help (https://www.npmjs.com/package/gulp-help)
-* pump (https://www.npmjs.com/package/pump)
+* gulp-help (https://github.com/chmontgomery/gulp-help)
+* pump (https://github.com/mafintosh/pump)
+* normalize.css (https://github.com/necolas/normalize.css/)
