@@ -16,7 +16,7 @@
     "url": "https://github.com/lizdizon/gulp-fe-boilerplate/issues"
   },
   "homepage": "https://github.com/lizdizon/gulp-fe-boilerplate#readme",
-  "devDependencies": {
+  "dependencies": {
     "browser-sync": "^2.12.2",
     "del": "^2.2.0",
     "gulp": "^3.9.1",
