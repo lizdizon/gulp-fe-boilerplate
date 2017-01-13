@@ -28,7 +28,6 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.2.0",
     "gulp-uglify": "^1.5.3",
-    "handlebars": "^4.0.5",
     "imagemin-pngquant": "^4.2.2",
     "jshint": "^2.9.1",
     "normalize.css": "^5.0.0",

@@ -88,11 +88,6 @@ gulp.task('copy:json', 'Copy /source/*.json to /dist', function() {
 		.pipe(gulp.dest(paths.dist.js));
 });
 
-gulp.task('copy:hbslib', false, function() {
-	return gulp.src('./node_modules/handlebars/dist/handlebars.js')
-		.pipe(gulp.dest('./source/js/vendor/'));
-});
-
 gulp.task('copy:normalizeCss', false, function() {
 	return gulp.src('./node_modules/normalize.css/normalize.css')
 		.pipe(rename('_normalize.scss'))
@@ -121,7 +116,6 @@ gulp.task('build', 'Clean /dist, copy assets, and build project', function(callb
 		'copy:images',
 		'copy:fonts',
 		'copy:normalizeCss',
-		'copy:hbslib',
 		'copy:json',
 		'sass',
 		'lint',

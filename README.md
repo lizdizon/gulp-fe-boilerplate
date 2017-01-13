@@ -9,7 +9,6 @@ Boilerplate Node gulp.js project for front end development.
 * JS Hinting
 * CSS and JS concatenation and minification
 * Image minification
-* Handlebars compilation at runtime
 
 ### Installation
 ```
@@ -44,7 +43,6 @@ $ gulp build
 * gulp-imagemin, imagemin-pngquant (https://github.com/sindresorhus/gulp-imagemin)
 * run-sequence (https://github.com/OverZealous/run-sequence)
 * browserSync (https://www.browsersync.io/) 
-* Handlebars (http://handlebarsjs.com/)
 * gulp-help (https://github.com/chmontgomery/gulp-help)
 * pump (https://github.com/mafintosh/pump)
 * normalize.css (https://github.com/necolas/normalize.css/)
