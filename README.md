@@ -5,7 +5,7 @@ Boilerplate Node gulp.js project for front end development.
 
 ### Features
 * BrowserSync live preview
-* SASS pre-processing with autoprefixing
+* SASS pre-processing with normalization, autoprefixing
 * JS Hinting
 * CSS and JS concatenation and minification
 * Image minification
@@ -19,7 +19,7 @@ $ gulp build
 ### Commands
 
 #### Main tasks
-`$ gulp watch` - Start local server, preview build at http://localhost:3000
+`$ gulp dev` - Start local server, preview build at http://localhost:3000
 * starts browserSync and local server
 * watches for changes in /source/* and runs jshint, js cat + uglify, sass + autoprefixer, and copy tasks as needed, outputting into /dist/*
 

@@ -29,16 +29,20 @@ paths = {
 	}
 }
 
-gulp.task('sass', false, function() {
-	return gulp.src(paths.src.scss)
-		.pipe(autoprefixer({
+gulp.task('sass', false, function(callback) {
+	pump([
+		gulp.src(paths.src.scss),
+		sass({outputStyle: 'compressed'}),
+		autoprefixer({
 			browsers: ['last 2 versions']
-		}))
-		.pipe(sass({outputStyle: 'compressed'}))
-		.pipe(gulp.dest(paths.dist.css))
-		.pipe(browserSync.reload({
+		}),
+		rename('main.min.css'),
+		gulp.dest(paths.dist.css),
+		browserSync.reload({
 			stream: true
-		}));
+		})
+	],
+	callback);
 });
 
 gulp.task('scripts', 'JavaScript concat, uglify, and copy to /dist', function(callback) {
@@ -46,7 +50,9 @@ gulp.task('scripts', 'JavaScript concat, uglify, and copy to /dist', function(ca
 			gulp.src([paths.src.js + 'vendor/**', paths.src.js + '*.js']),
 			concat('all.js'),
 			rename('main.min.js'),
-			uglify(),
+			uglify({
+				output: {comments: /^!|@preserve|@license|@cc_on/i}
+			}),
 			gulp.dest(paths.dist.js)
 		],
 		callback
@@ -65,11 +71,11 @@ gulp.task('clean:all', 'Clean /dist', function() {
 
 gulp.task('copy:images', 'Minimize images from /source/images and copy to /dist/images', function() {
 	return gulp.src(paths.src.images)
-		.pipe(imagemin({
-				progressive: true,
-				svgoPlugins: [{removeViewBox: false}],
-				use: [pngquant()]
-			}))
+		.pipe(imagemin([
+			imagemin.svgo({
+				plugins: [ {cleanupIDs: false} ]
+			})
+		],{ verbose: true }))
 		.pipe(gulp.dest(paths.dist.images));
 });
 
@@ -81,11 +87,6 @@ gulp.task('copy:markup', 'Copy /source/*.html to /dist', function() {
 gulp.task('copy:fonts', false, function() {
 	return gulp.src(paths.src.fonts)
 		.pipe(gulp.dest(paths.dist.fonts));
-});
-
-gulp.task('copy:json', 'Copy /source/*.json to /dist', function() {
-	return gulp.src('./source/js/index.json')
-		.pipe(gulp.dest(paths.dist.js));
 });
 
 gulp.task('copy:normalizeCss', false, function() {
@@ -102,9 +103,8 @@ gulp.task('browserSync', false, function() {
   })
 });
 
-gulp.task('watch', 'Launch browsersync and watch sass', ['browserSync', 'sass'], function() {
+gulp.task('dev', 'Launch browsersync and watch sass', ['browserSync', 'sass'], function() {
 	gulp.watch(paths.src.js + '*.js', ['lint', 'scripts']);
-	gulp.watch('./source/js/*.json', ['copy:json']);
 	gulp.watch(paths.src.scss, ['sass']);
 	gulp.watch(paths.src.markup, ['copy:markup']);
 });
@@ -116,7 +116,6 @@ gulp.task('build', 'Clean /dist, copy assets, and build project', function(callb
 		'copy:images',
 		'copy:fonts',
 		'copy:normalizeCss',
-		'copy:json',
 		'sass',
 		'lint',
 		'scripts',
